@@ -32,3 +32,28 @@ Part 3: The direct formula loses accuracy as x gets smaller. At x = 1e-15 it gav
 | 1e-08 | 0.499999996961 | 0.499999998750 |
 | 1e-12 | 0.500044450291 | 0.500000000000 |
 | 1e-15 | 0.444089209850 | 0.500000000000 |
+## Modified real-world case: adding up shop sales
+
+Program file: code/Task_04_banking_case.py
+
+### New assumptions
+- A shop records many sales, and each sale is exactly KES 0.10.
+- The shop adds the sales one by one.
+- I tested 1,000, 100,000 and 1,000,000 sales.
+- The exact total is the number of sales multiplied by 0.10.
+- I compared a normal float total with an exact Decimal total.
+
+### Input data
+- Price of each sale: 0.10
+- Number of sales: 1,000, 100,000 and 1,000,000
+
+### Output
+
+| Number of sales | Exact total (Decimal) | Float total | Absolute error | Relative error |
+|---|---|---|---|---|
+| 1,000 | 100.00 | 100.0000000000 | about 0.000000000001 | 0.000000000001% |
+| 100,000 | 10000.00 | 10000.0000000188 | 0.0000000188 | 0.000000000188% |
+| 1,000,000 | 100000.00 | 100000.0000013329 | 0.0000013329 | 0.000000001333% |
+
+### Interpretation
+The float total is slightly wrong, and the error grows as the number of sales grows. This is because 0.10 cannot be stored exactly in binary, so every addition adds a tiny mistake, and these mistakes pile up. The Decimal total stayed exact every time. For one million sales the error is still very small, but banks and accounting systems handle huge numbers of calculations, so they use Decimal or whole cents to avoid accumulated rounding errors.
