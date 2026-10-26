@@ -33,6 +33,7 @@ for _ in range(100):
 print(f"Bisection equilibrium temperature: {solution.root:.6f} C")
 print(f"Fixed-point equilibrium temperature: {history[-1]:.6f} C")
 print("Fixed-point iterations:", len(history) - 1)
+print("Bisection iterations:", solution.iterations)
 
 temps = np.linspace(20, 40, 300)
 plt.plot(temps, heat_balance(temps))

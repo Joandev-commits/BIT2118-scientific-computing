@@ -40,5 +40,12 @@ When I ran the program, it printed:
 Bisection equilibrium temperature: 27.525211 C
 Fixed-point equilibrium temperature: 27.525211 C
 Fixed-point iterations: 13
+Bisection iterations: 38
+Bisection needed 38 steps, while fixed-point iteration needed only 13 steps, so fixed-point was faster here.
 
 Both methods gave the same equilibrium temperature of 27.525211 degrees C. Bisection found it by repeatedly halving the interval from 20 to 40. Fixed-point iteration found it by starting at 30 and repeating the formula, and it took 13 steps. The graph agrees with these numbers. The line crosses zero at about 27.5 degrees C.
+## Changing the inputs
+
+Experiment 1: I changed the starting guess of the fixed-point method from T = 30 to T = 20. The equilibrium temperature stayed at 27.525211 degrees C. The number of fixed-point iterations went up from 13 to 14. The bisection result did not change, because I did not change its interval (38 iterations both times). This shows that the starting guess does not change the answer. It only changes how many steps are needed to reach it.
+Experiment 2: I changed the bisection interval from [20, 40] to [25, 30]. The equilibrium temperature stayed at 27.525211 degrees C. The number of bisection iterations dropped from 38 to 36. The fixed-point result did not change (13 iterations). Each step of bisection cuts the interval in half, and the new interval is one quarter of the old one, which saves two steps. A smaller starting interval needs fewer steps, but the answer is the same as long as the root is still inside the interval.
+Experiment 3: I changed the bisection interval to [30, 40]. The program stopped with the error "f(a) and f(b) must have different signs". At both 30 and 40 the heat-balance function is above zero, so there is no sign change and bisection cannot be sure that a root lies inside the interval. This shows that bisection only works when the starting interval has one end below zero and one end above zero.
