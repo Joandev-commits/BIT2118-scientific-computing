@@ -49,3 +49,12 @@ Both methods gave the same equilibrium temperature of 27.525211 degrees C. Bisec
 Experiment 1: I changed the starting guess of the fixed-point method from T = 30 to T = 20. The equilibrium temperature stayed at 27.525211 degrees C. The number of fixed-point iterations went up from 13 to 14. The bisection result did not change, because I did not change its interval (38 iterations both times). This shows that the starting guess does not change the answer. It only changes how many steps are needed to reach it.
 Experiment 2: I changed the bisection interval from [20, 40] to [25, 30]. The equilibrium temperature stayed at 27.525211 degrees C. The number of bisection iterations dropped from 38 to 36. The fixed-point result did not change (13 iterations). Each step of bisection cuts the interval in half, and the new interval is one quarter of the old one, which saves two steps. A smaller starting interval needs fewer steps, but the answer is the same as long as the root is still inside the interval.
 Experiment 3: I changed the bisection interval to [30, 40]. The program stopped with the error "f(a) and f(b) must have different signs". At both 30 and 40 the heat-balance function is above zero, so there is no sign change and bisection cannot be sure that a root lies inside the interval. This shows that bisection only works when the starting interval has one end below zero and one end above zero.
+## Meaning of the output
+
+The program printed an equilibrium temperature of 27.525211 degrees C from both methods. This is the temperature at which heat gained equals heat lost. Because bisection and fixed-point iteration reached the same answer by different routes, I can be confident the answer is correct.
+
+Bisection needed 38 iterations and fixed-point iteration needed 13. Bisection only halves the interval each time, so it is slow but very reliable, as long as the interval has a sign change. Fixed-point iteration moves closer to the answer faster here, but it only works when the rearranged formula settles down towards the root.
+
+## Interpretation of the graph
+
+The graph shows the heat-balance function for temperatures from 20 to 40 degrees C. The line starts below zero at 20 degrees C and rises steadily to above zero at 40 degrees C. It crosses zero at about 27.5 degrees C, and the dashed vertical line marks this point. Below this temperature the heat balance is negative, and above it the heat balance is positive. Because the line crosses zero only once, there is only one equilibrium temperature in this range.
